@@ -23,7 +23,7 @@ runTest () {
     joblog="$jobname-ci.log"
 
     parallel -j $jobs --retries $retries \
-        "echo Trying {} >> $joblog; npm run mocha -- -c --timeout 30000 --exit --require ./dist/server/tests/register.js --bail {}" \
+        "echo Trying {} >> $joblog; TS_NODE_PROJECT=./tsconfig.json TS_NODE_BASEURL="./dist" npm run mocha -- -c --timeout 30000 --exit -r tsconfig-paths/register --bail {}" \
         ::: $files
 
     cat "$joblog" | uniq -c

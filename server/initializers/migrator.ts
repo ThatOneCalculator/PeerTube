@@ -88,7 +88,7 @@ async function executeMigration (actualVersion: number, entity: { version: strin
   const migrationScriptName = entity.script
   logger.info('Executing %s migration script.', migrationScriptName)
 
-  const migrationScript = require(join(__dirname, 'migrations', migrationScriptName))
+  const migrationScript = __non_webpack_require__(join(__dirname, 'migrations', migrationScriptName))
 
   return sequelizeTypescript.transaction(async t => {
     const options = {

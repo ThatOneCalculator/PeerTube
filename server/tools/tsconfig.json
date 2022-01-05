@@ -1,11 +1,16 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/server/tools"
+    "baseUrl": "./",
+    "outDir": "../../dist/server/tools",
+    "paths": {
+      "@server/*": [ "../*" ],
+      "@shared/*": [ "../../shared/*" ]
+    }
   },
-  "include": [ ".", "../typings" ],
+  "include": [ "." ],
   "references": [
-    { "path": "../" },
+    { "path": "../" }
   ],
   "files": [],
   "exclude": [ ] // Overwrite exclude property

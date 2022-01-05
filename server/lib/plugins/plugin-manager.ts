@@ -427,7 +427,7 @@ export class PluginManager implements ServerHook {
     // Delete cache if needed
     const modulePath = join(pluginPath, packageJSON.library)
     decachePlugin(pluginPath, modulePath)
-    const library: PluginLibrary = require(modulePath)
+    const library: PluginLibrary = __non_webpack_require__(modulePath)
 
     if (!isLibraryCodeValid(library)) {
       throw new Error('Library code is not valid (miss register or unregister function)')

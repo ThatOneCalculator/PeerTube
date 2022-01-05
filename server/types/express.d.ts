@@ -25,7 +25,7 @@ import { MVideoPlaylistElement, MVideoPlaylistElementVideoUrlPlaylistPrivacy } f
 import { MAccountVideoRateAccountVideo } from '@server/types/models/video/video-rate'
 import { HttpMethod, PeerTubeProblemDocumentData, ServerErrorCode, VideoCreate } from '@shared/models'
 import { File as UploadXFile, Metadata } from '@uploadx/core'
-import { RegisteredPlugin } from '../../lib/plugins/plugin-manager'
+import { RegisteredPlugin } from '../lib/plugins/plugin-manager'
 import {
   MAccountDefault,
   MActorAccountChannelId,
@@ -40,7 +40,7 @@ import {
   MVideoRedundancyVideo,
   MVideoShareActor,
   MVideoThumbnail
-} from '../../types/models'
+} from './models'
 import { Writable } from 'stream'
 
 declare module 'express' {

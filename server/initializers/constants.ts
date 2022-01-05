@@ -2,6 +2,7 @@ import { CronRepeatOptions, EveryRepeatOptions } from 'bull'
 import { randomBytes } from 'crypto'
 import { invert } from 'lodash'
 import { join } from 'path'
+import { requirePackageJSON } from '@server/helpers/require'
 import { randomInt, root } from '@shared/core-utils'
 import {
   AbuseState,
@@ -29,7 +30,7 @@ const LAST_MIGRATION_VERSION = 675
 // ---------------------------------------------------------------------------
 
 const API_VERSION = 'v1'
-const PEERTUBE_VERSION: string = require(join(root(), 'package.json')).version
+const PEERTUBE_VERSION: string = requirePackageJSON().version
 
 const PAGINATION = {
   GLOBAL: {

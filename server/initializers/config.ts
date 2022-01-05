@@ -2,15 +2,16 @@ import bytes from 'bytes'
 import { IConfig } from 'config'
 import { dirname, join } from 'path'
 import { decacheModule } from '@server/helpers/decache'
+import { requireConfig } from '@server/helpers/require'
 import { VideoRedundancyConfigFilter } from '@shared/models/redundancy/video-redundancy-config-filter.type'
 import { BroadcastMessageLevel } from '@shared/models/server'
+import { buildPath, root } from '../../shared/core-utils'
 import { VideoPrivacy, VideosRedundancyStrategy } from '../../shared/models'
 import { NSFWPolicyType } from '../../shared/models/videos/nsfw-policy.type'
-import { buildPath, root } from '../../shared/core-utils'
 import { parseBytes, parseDurationToMs } from '../helpers/core-utils'
 
 // Use a variable to reload the configuration if we need
-let config: IConfig = require('config')
+let config: IConfig = requireConfig()
 
 const configChangedHandlers: Function[] = []
 
@@ -517,7 +518,7 @@ export function reloadConfig () {
         continue
       }
 
-      delete require.cache[fileName]
+      delete __non_webpack_require__.cache[fileName]
     }
 
     decacheModule('config')
@@ -525,7 +526,7 @@ export function reloadConfig () {
 
   purge()
 
-  config = require('config')
+  config = requireConfig()
 
   for (const configChangedHandler of configChangedHandlers) {
     configChangedHandler()

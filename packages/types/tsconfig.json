@@ -3,7 +3,8 @@
   "compilerOptions": {
     "stripInternal": true,
     "removeComments": false,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
+    "declaration": true,
     "outDir": "./dist/",
     "baseUrl": "./src/",
     "rootDir": "./src/",

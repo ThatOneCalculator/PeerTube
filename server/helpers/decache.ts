@@ -9,7 +9,7 @@ function decachePlugin (pluginPath: string, libraryPath: string) {
   if (!moduleName) return
 
   searchCache(moduleName, function (mod) {
-    delete require.cache[mod.id]
+    delete __non_webpack_require__.cache[mod.id]
   })
 
   removeCachedPath(pluginPath)
@@ -21,7 +21,7 @@ function decacheModule (name: string) {
   if (!moduleName) return
 
   searchCache(moduleName, function (mod) {
-    delete require.cache[mod.id]
+    delete __non_webpack_require__.cache[mod.id]
   })
 
   removeCachedPath(moduleName)
@@ -38,18 +38,18 @@ export {
 
 function find (moduleName: string) {
   try {
-    return require.resolve(moduleName)
+    return __non_webpack_require__.resolve(moduleName)
   } catch {
     return ''
   }
 }
 
 function searchCache (moduleName: string, callback: (current: NodeModule) => void) {
-  const resolvedModule = require.resolve(moduleName)
+  const resolvedModule = __non_webpack_require__.resolve(moduleName)
   let mod: NodeModule
   const visited = {}
 
-  if (resolvedModule && ((mod = require.cache[resolvedModule]) !== undefined)) {
+  if (resolvedModule && ((mod = __non_webpack_require__.cache[resolvedModule]) !== undefined)) {
     // Recursively go over the results
     (function run (current) {
       visited[current.id] = true
@@ -68,7 +68,7 @@ function searchCache (moduleName: string, callback: (current: NodeModule) => voi
 };
 
 function removeCachedPath (pluginPath: string) {
-  const pathCache = (module.constructor as any)._pathCache
+  const pathCache = __non_webpack_require__.main.constructor._pathCache
 
   Object.keys(pathCache).forEach(function (cacheKey) {
     if (cacheKey.includes(pluginPath)) {

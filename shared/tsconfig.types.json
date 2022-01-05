@@ -4,7 +4,8 @@
     "outDir": "../packages/types/dist/shared",
     "stripInternal": true,
     "removeComments": false,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": false,
+    "declaration": true
   },
   "exclude": [
     "server-commands/"

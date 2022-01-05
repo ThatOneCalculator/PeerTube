@@ -1,6 +1,3 @@
-import { registerTSPaths } from './server/helpers/register-ts-paths'
-registerTSPaths()
-
 // ----------- Node modules -----------
 import express from 'express'
 import morgan, { token } from 'morgan'
@@ -233,6 +230,8 @@ if (cliOptions.client) app.use('/', clientsRouter)
 
 // Catch unmatched routes
 app.use((req, res: express.Response) => {
+  logger.info('coucou', { toto: HttpStatusCode.NOT_FOUND_404 })
+
   res.status(HttpStatusCode.NOT_FOUND_404).end()
 })
 

@@ -2,19 +2,20 @@ import { Command } from 'commander'
 import { Netrc } from 'netrc-parser'
 import { join } from 'path'
 import { createLogger, format, transports } from 'winston'
-import { PeerTubeServer } from '@shared/server-commands'
+import { requirePackageJSON } from '@server/helpers/require'
+import { loadLanguages } from '@server/initializers/constants'
+import { root } from '@shared/core-utils'
 import { UserRole } from '@shared/models'
+import { PeerTubeServer } from '@shared/server-commands'
 import { VideoPrivacy } from '../../shared/models/videos'
 import { getAppNumber, isTestInstance } from '../helpers/core-utils'
-import { root } from '@shared/core-utils'
-import { loadLanguages } from '@server/initializers/constants'
 
 let configName = 'PeerTube/CLI'
 if (isTestInstance()) configName += `-${getAppNumber()}`
 
 const config = require('application-config')(configName)
 
-const version = require('../../../package.json').version
+const version = requirePackageJSON().version
 
 async function getAdminTokenOrDie (server: PeerTubeServer, username: string, password: string) {
   const token = await server.login.getAccessToken(username, password)

@@ -4,7 +4,8 @@
     "outDir": "../packages/types/dist/server",
     "stripInternal": true,
     "removeComments": false,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": false,
+    "declaration": true
   },
   "references": [
     { "path": "../shared/tsconfig.types.json" }

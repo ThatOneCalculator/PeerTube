@@ -11,6 +11,6 @@ rm -rf ./dist/server/tools/
     yarn install --pure-lockfile
 )
 
-npm run tsc -- --build --verbose ./server/tools/tsconfig.json
+./node_modules/.bin/webpack -c ./webpack/webpack.cli.js --env target production --stats-error-details
+
 cp -r "./server/tools/node_modules" "./dist/server/tools"
-cp "./tsconfig.json" "./dist"
